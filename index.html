@@ -38,8 +38,8 @@
   }
   .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
   .btn{
-    display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;
-    font-weight:800;font-size:1.05rem;color:#3a2606;padding:16px 30px;border-radius:999px;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;border:none;
+    font-weight:800;font-size:1.05rem;line-height:1.5;color:#3a2606;padding:15px 30px;border-radius:999px;
     background:linear-gradient(100deg,var(--gold),var(--gold-2));
     box-shadow:0 14px 30px rgba(245,158,11,.42);transition:transform .15s ease,box-shadow .15s ease;
     text-decoration:none;
@@ -68,7 +68,7 @@
   /* cột trái: nhịp dọc đều nhau để gom khối */
   .hero-left{display:flex;flex-direction:column;gap:22px;align-self:center}
   .hero-left .pill{align-self:flex-start}
-  .hero h1{font-size:3rem;line-height:1.12;font-weight:900;letter-spacing:-.5px;margin:0}
+  .hero h1{font-size:3rem;line-height:1.3;font-weight:900;letter-spacing:-.3px;margin:0}
   .hero h1 .hl{background:linear-gradient(90deg,#fde68a,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero p.lead{font-size:1.16rem;opacity:.94;max-width:540px;margin:0}
   /* dải thông tin gộp 1 khối thay vì các chip rời */
@@ -108,7 +108,7 @@
   section{padding:74px 0}
   .eyebrow{display:inline-block;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
     font-size:.78rem;color:var(--grad1);background:var(--soft);padding:6px 14px;border-radius:999px;margin-bottom:14px}
-  h2{font-size:2.1rem;font-weight:900;letter-spacing:-.4px;line-height:1.2}
+  h2{font-size:2.1rem;font-weight:900;letter-spacing:-.3px;line-height:1.3}
   .sub{color:var(--muted);font-size:1.08rem;max-width:640px;margin-top:10px}
   .center{text-align:center}
   .center .sub{margin-left:auto;margin-right:auto}
@@ -423,8 +423,11 @@
             <span class="form-note">Link Zoom sẽ gửi qua email này.</span>
           </div>
           <div class="field">
-            <label>Số điện thoại / Zalo</label>
-            <input type="tel" name="sdt" placeholder="09xx xxx xxx" />
+            <label>Số điện thoại / Zalo <span class="req">*</span></label>
+            <input type="tel" name="sdt" required inputmode="numeric" maxlength="11" pattern="\d{10,11}"
+                   placeholder="VD: 0901234567"
+                   oninput="this.value=this.value.replace(/\D/g,'').slice(0,11)" />
+            <span class="form-note">Chỉ nhập số, 10–11 chữ số. Dùng làm nội dung chuyển khoản cọc.</span>
           </div>
           <div class="field">
             <label>Nghề nghiệp / Phòng ban</label>
@@ -469,9 +472,9 @@
           <div style="width:100%">
             <div class="bank-line"><span>Ngân hàng</span><b id="bBank">Vietcombank <button class="copy" data-c="Vietcombank">Sao chép</button></b></div>
             <div class="bank-line"><span>Số tài khoản</span><b id="bAcc">0123456789 <button class="copy" data-c="0123456789">Sao chép</button></b></div>
-            <div class="bank-line"><span>Chủ tài khoản</span><b>HUNG KESCY</b></div>
-            <div class="bank-line"><span>Số tiền</span><b>200.000đ</b></div>
-            <div class="bank-line"><span>Nội dung CK</span><b id="bNote">COC AI <span style="opacity:.6">[Tên bạn]</span> <button class="copy" data-c="COC AI">Sao chép</button></b></div>
+            <div class="bank-line"><span>Chủ tài khoản</span><b id="bHolder">HUNG KESCY</b></div>
+            <div class="bank-line"><span>Số tiền</span><b id="bAmount">200.000đ</b></div>
+            <div class="bank-line"><span>Nội dung CK</span><b id="bNote">COC AI <span style="opacity:.6">[SĐT của bạn]</span> <button class="copy" data-c="COC AI">Sao chép</button></b></div>
             <p class="form-note" style="margin-top:14px">Sau khi chuyển khoản, đội ngũ sẽ xác nhận và gửi link Zoom qua email trong 24h. Giữ lại biên lai để được hoàn cọc nhé!</p>
           </div>
         </div>
@@ -534,7 +537,8 @@ const CONFIG = {
   // ===== CÁCH 2 (tuỳ chọn): Apps Script Web App — chỉ dùng nếu bạn KHÔNG bị chặn =====
   SHEET_ENDPOINT: "",
   // Thông tin tài khoản nhận cọc — thay bằng tài khoản thật.
-  BANK: { name: "Vietcombank", account: "0123456789", holder: "HUNG KESCY", amount: 200000 }
+  // bankCode: mã ngân hàng VietQR (VCB, TCB, MB, ACB, BIDV, ICB=VietinBank, VPB, VBA=Agribank…)
+  BANK: { bankCode: "VCB", name: "Vietcombank", account: "0123456789", holder: "HUNG KESCY", amount: 200000 }
 };
 
 const form = document.getElementById('regForm');
@@ -551,6 +555,9 @@ form.addEventListener('submit', async function(e){
 
   if(!data.hoten || !data.hoten.trim()){ showError('Vui lòng nhập họ tên.'); return; }
   if(!data.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)){ showError('Email chưa hợp lệ.'); return; }
+  const sdtDigits = (data.sdt || '').replace(/\D/g,'');
+  if(!/^\d{10,11}$/.test(sdtDigits)){ showError('Số điện thoại phải gồm 10–11 chữ số.'); return; }
+  data.sdt = sdtDigits;
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Đang gửi…';
@@ -574,8 +581,14 @@ form.addEventListener('submit', async function(e){
         body: JSON.stringify(data)
       });
     }
-    // cập nhật nội dung CK theo tên người đăng ký
-    const note = 'COC AI ' + (data.hoten || '').toUpperCase();
+    // nội dung chuyển khoản = COC AI + số điện thoại đăng ký
+    const B = CONFIG.BANK;
+    const note = 'COC AI ' + sdtDigits;
+    // tạo mã QR VietQR động, đã gắn sẵn nội dung CK kèm SĐT
+    const qrUrl = 'https://img.vietqr.io/image/' + B.bankCode + '-' + B.account + '-compact2.png'
+      + '?amount=' + B.amount + '&addInfo=' + encodeURIComponent(note)
+      + '&accountName=' + encodeURIComponent(B.holder);
+    document.getElementById('qrImg').src = qrUrl;
     document.getElementById('bNote').innerHTML = note + ' <button class="copy" data-c="'+note+'">Sao chép</button>';
     bindCopy();
     // hiện QR, ẩn form
@@ -594,6 +607,19 @@ function bindCopy(){
     b.onclick = ()=>{ navigator.clipboard.writeText(b.dataset.c); const o=b.textContent; b.textContent='Đã chép ✓'; setTimeout(()=>b.textContent=o,1500); };
   });
 }
+
+/* Đổ thông tin ngân hàng từ CONFIG ra khu hiển thị (chỉ cần sửa CONFIG.BANK) */
+(function initBank(){
+  const B = CONFIG.BANK;
+  const amt = Number(B.amount||0).toLocaleString('vi-VN') + 'đ';
+  const set = (id, html)=>{ const el=document.getElementById(id); if(el) el.innerHTML = html; };
+  set('bBank', B.name + ' <button class="copy" data-c="'+B.name+'">Sao chép</button>');
+  set('bAcc',  B.account + ' <button class="copy" data-c="'+B.account+'">Sao chép</button>');
+  set('bHolder', B.holder);
+  set('bAmount', amt);
+  const amtEl = document.querySelector('.qr-box .amt'); if(amtEl) amtEl.textContent = amt;
+})();
+
 bindCopy();
 
 /* ===== Đếm ngược tới giờ workshop ===== */
