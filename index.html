@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Workshop "Cầm tay chỉ AI" — Dùng AI cho dân văn phòng | Hưng Kescy</title>
+<meta name="description" content="Workshop 2 tiếng online qua Zoom hướng dẫn dân văn phòng dùng AI từ con số 0. Miễn phí, chỉ cọc giữ chỗ và hoàn 100%. Giới hạn 99 suất." />
+<!-- Open Graph -->
+<meta property="og:title" content="Workshop Cầm tay chỉ AI — Dùng AI cho dân văn phòng" />
+<meta property="og:description" content="2 tiếng online, học AI từ con số 0. Miễn phí, cọc giữ chỗ hoàn 100%. Chỉ 99 suất." />
+<meta property="og:type" content="website" />
+<!-- Font tiếng Việt: Be Vietnam Pro -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0b0820;
+    --grad1:#6d28d9;   /* tím hoàng gia */
+    --grad2:#4338ca;   /* chàm sâu */
+    --grad3:#f59e0b;   /* vàng gold nhấn */
+    --gold:#fbbf24;    /* vàng sáng */
+    --gold-2:#f59e0b;  /* vàng đậm */
+    --ink:#191333;
+    --muted:#6f6a93;
+    --card:#ffffff;
+    --soft:#f6f4ff;
+    --line:#ece9fb;
+    --ok:#16a34a;
+    --radius:20px;
+    --shadow:0 22px 55px rgba(67,56,202,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Be Vietnam Pro','Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+    color:var(--ink);background:#faf9ff;line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;
+    font-weight:800;font-size:1.05rem;color:#3a2606;padding:16px 30px;border-radius:999px;
+    background:linear-gradient(100deg,var(--gold),var(--gold-2));
+    box-shadow:0 14px 30px rgba(245,158,11,.42);transition:transform .15s ease,box-shadow .15s ease;
+    text-decoration:none;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(245,158,11,.55)}
+  .btn-ghost{background:rgba(255,255,255,.12);box-shadow:none;border:1.5px solid rgba(255,255,255,.4)}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.25);color:#fff;padding:7px 16px;border-radius:999px;
+    font-size:.85rem;font-weight:700;backdrop-filter:blur(6px)}
+
+  /* HERO */
+  .hero{
+    position:relative;overflow:hidden;color:#fff;
+    background:radial-gradient(900px 460px at 82% -12%,#9333ea 0%,transparent 58%),
+               radial-gradient(700px 500px at 5% 110%,#3730a3 0%,transparent 60%),
+               linear-gradient(150deg,#2a1065 0%,#3b2a8f 45%,#1e1b54 100%);
+    padding:22px 0 90px;
+  }
+  .hero::after{content:"";position:absolute;right:-110px;bottom:-130px;width:400px;height:400px;
+    background:radial-gradient(circle,rgba(251,191,36,.38),transparent 65%);filter:blur(8px)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:6px 0 30px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem;letter-spacing:.3px}
+  .brand .dot{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--gold),var(--gold-2));font-size:1.1rem}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:stretch}
+  /* cột trái: nhịp dọc đều nhau để gom khối */
+  .hero-left{display:flex;flex-direction:column;gap:22px;align-self:center}
+  .hero-left .pill{align-self:flex-start}
+  .hero h1{font-size:3rem;line-height:1.12;font-weight:900;letter-spacing:-.5px;margin:0}
+  .hero h1 .hl{background:linear-gradient(90deg,#fde68a,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:1.16rem;opacity:.94;max-width:540px;margin:0}
+  /* dải thông tin gộp 1 khối thay vì các chip rời */
+  .info-bar{display:flex;align-items:stretch;gap:0;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);border-radius:16px;overflow:hidden;backdrop-filter:blur(6px);max-width:540px}
+  .info-item{flex:1;display:flex;align-items:center;gap:11px;padding:14px 18px}
+  .info-item + .info-item{border-left:1px solid rgba(255,255,255,.14)}
+  .info-item .i{font-size:1.4rem;line-height:1}
+  .info-item b{display:block;font-size:1rem;font-weight:800;line-height:1.2}
+  .info-item small{display:block;font-size:.78rem;opacity:.72;font-weight:600}
+  .seats-inline{font-size:.95rem;font-weight:700;opacity:.95;margin:0}
+  .seats-inline b{color:var(--gold)}
+  /* ===== action card bên phải (đếm ngược + lợi ích + CTA) ===== */
+  .acard{display:flex;flex-direction:column;gap:20px;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:24px;
+    padding:28px;backdrop-filter:blur(12px);box-shadow:0 24px 64px rgba(0,0,0,.32)}
+  .acard .cd-label{font-size:.82rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:.82;text-align:center}
+  .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .cd-box{background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:12px 4px;text-align:center}
+  .cd-box b{display:block;font-size:1.7rem;font-weight:900;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
+  .cd-box small{display:block;font-size:.68rem;letter-spacing:.5px;text-transform:uppercase;opacity:.7;margin-top:5px}
+  .acard hr{border:none;border-top:1px dashed rgba(255,255,255,.2);margin:0}
+  .acard ul{list-style:none;display:grid;gap:11px}
+  .acard li{display:flex;gap:11px;align-items:flex-start;font-weight:600;font-size:.97rem}
+  .acard li .ck{flex:0 0 auto;width:23px;height:23px;border-radius:50%;background:var(--gold);color:#7c2d12;
+    display:grid;place-items:center;font-weight:900;font-size:.78rem}
+  .acard .btn{width:100%;justify-content:center}
+  /* thanh tiến độ số suất */
+  .seat-wrap{display:flex;flex-direction:column;gap:7px}
+  .seat-bar{height:8px;border-radius:99px;background:rgba(0,0,0,.25);overflow:hidden}
+  .seat-bar i{display:block;height:100%;width:18%;border-radius:99px;
+    background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+  .seat-text{font-size:.84rem;font-weight:700;text-align:center;opacity:.9}
+  .seat-text b{color:var(--gold)}
+
+  /* SECTION */
+  section{padding:74px 0}
+  .eyebrow{display:inline-block;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+    font-size:.78rem;color:var(--grad1);background:var(--soft);padding:6px 14px;border-radius:999px;margin-bottom:14px}
+  h2{font-size:2.1rem;font-weight:900;letter-spacing:-.4px;line-height:1.2}
+  .sub{color:var(--muted);font-size:1.08rem;max-width:640px;margin-top:10px}
+  .center{text-align:center}
+  .center .sub{margin-left:auto;margin-right:auto}
+
+  /* PAIN */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;box-shadow:0 8px 24px rgba(79,70,229,.06);transition:transform .15s,box-shadow .15s}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .ico{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:1.6rem;margin-bottom:16px;
+    background:linear-gradient(135deg,#ede9fe,#fef3c7)}
+  .card h3{font-size:1.18rem;margin-bottom:8px}
+  .card p{color:var(--muted)}
+
+  /* LEARN */
+  .learn{background:linear-gradient(180deg,#f6f4ff,#faf9ff)}
+  .learn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}
+  .learn-item{display:flex;gap:15px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+  .learn-item .n{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+    font-weight:900;color:#fff;font-size:1.1rem;background:linear-gradient(135deg,var(--grad1),var(--grad2))}
+  .learn-item h4{font-size:1.07rem;margin-bottom:3px}
+  .learn-item p{color:var(--muted);font-size:.96rem;margin:0}
+
+  /* DEPOSIT */
+  .deposit-box{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;margin-top:36px;
+    background:linear-gradient(135deg,#1b1340,#3b2a7a);color:#fff;border-radius:26px;padding:42px;position:relative;overflow:hidden}
+  .deposit-box::after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;
+    background:radial-gradient(circle,rgba(255,209,102,.35),transparent 65%)}
+  .deposit-box h2{color:#fff}
+  .steps{display:grid;gap:16px;margin-top:8px}
+  .step{display:flex;gap:14px;align-items:flex-start}
+  .step .b{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:#ffd166;color:#5b2a00;
+    font-weight:900;display:grid;place-items:center}
+  .step b{color:#ffd166}
+  .refund{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:24px}
+  .refund .big{font-size:2.6rem;font-weight:900;color:#ffd166;line-height:1}
+  .refund ul{list-style:none;margin-top:14px;display:grid;gap:10px}
+  .refund li{display:flex;gap:9px;font-size:.97rem}
+  .refund li::before{content:"\2714";color:#37e29b;font-weight:900}
+
+  /* MENTOR */
+  .mentor-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:36px;align-items:center;margin-top:34px}
+  .mentor-photo{aspect-ratio:1/1;border-radius:24px;background:
+     linear-gradient(135deg,var(--grad1),var(--grad3));display:grid;place-items:center;color:#fff;
+     box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .mentor-photo .av{font-size:5rem;font-weight:900;opacity:.92}
+  .mentor-photo .tag{position:absolute;bottom:16px;left:16px;right:16px;background:rgba(0,0,0,.28);
+     backdrop-filter:blur(6px);border-radius:14px;padding:10px 14px;font-weight:700;font-size:.9rem}
+  .mentor-info h2{margin-bottom:6px}
+  .mentor-role{color:var(--grad1);font-weight:800;margin-bottom:14px}
+  .mentor-info p{color:#39335f;margin-bottom:14px}
+  .creds{display:flex;flex-wrap:wrap;gap:10px}
+  .cred{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:9px 14px;font-weight:700;font-size:.9rem}
+
+  /* FORM */
+  .register{background:linear-gradient(135deg,#221a52,#4f46e5)}
+  .register h2,.register .sub{color:#fff}
+  .register .sub{opacity:.9}
+  .form-card{background:#fff;border-radius:26px;padding:34px;box-shadow:0 30px 70px rgba(0,0,0,.3);margin-top:34px}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field.full{grid-column:1/-1}
+  label{font-weight:700;font-size:.93rem;color:var(--ink)}
+  label .req{color:#e11d48}
+  input,select,textarea{font-family:inherit;font-size:1rem;padding:13px 15px;border:1.6px solid var(--line);
+    border-radius:13px;background:#fbfaff;transition:border .15s,box-shadow .15s;width:100%}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--grad1);box-shadow:0 0 0 4px rgba(124,58,237,.12);background:#fff}
+  textarea{resize:vertical;min-height:84px}
+  .form-note{font-size:.86rem;color:var(--muted);margin-top:6px}
+  .submit-row{margin-top:8px}
+  .submit-row .btn{width:100%;justify-content:center;font-size:1.12rem;padding:18px}
+  .msg{margin-top:14px;padding:13px 16px;border-radius:12px;font-weight:600;display:none}
+  .msg.err{display:block;background:#fef2f2;color:#b91c1c;border:1px solid #fecaca}
+
+  /* QR / SUCCESS */
+  .success{display:none}
+  .success.show{display:block;animation:pop .4s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .qr-wrap{display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center}
+  .qr-box{background:#fff;border:2px dashed var(--grad1);border-radius:20px;padding:18px;text-align:center}
+  .qr-box img{width:230px;height:230px;display:block;border-radius:10px}
+  .qr-box .amt{margin-top:10px;font-weight:900;font-size:1.3rem;color:var(--grad1)}
+  .bank-line{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:.98rem}
+  .bank-line:last-child{border:none}
+  .bank-line b{color:var(--ink)}
+  .copy{cursor:pointer;color:var(--grad1);font-weight:800;font-size:.85rem;background:none;border:none;padding:0}
+  .badge-ok{display:inline-flex;align-items:center;gap:8px;background:#dcfce7;color:#166534;font-weight:800;
+    padding:8px 16px;border-radius:999px;margin-bottom:14px}
+
+  /* FAQ */
+  details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 22px;margin-bottom:12px;transition:box-shadow .15s}
+  details[open]{box-shadow:0 8px 24px rgba(79,70,229,.08)}
+  summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:1.5rem;color:var(--grad1);font-weight:700;transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{color:var(--muted);padding:0 0 18px}
+
+  /* FOOTER */
+  footer{background:#140d2e;color:#cfc8f0;padding:50px 0 34px;text-align:center}
+  footer .brand{justify-content:center;color:#fff;margin-bottom:14px}
+  footer a{color:#ffd166;text-decoration:none;font-weight:700}
+  .fcontact{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin:16px 0 22px}
+  .fcontact a{color:#fff}
+  .fnote{font-size:.83rem;opacity:.6}
+
+  /* sticky mobile cta */
+  .sticky-cta{display:none}
+
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:28px}
+    .hero h1{font-size:2.3rem}
+    .info-bar{flex-direction:column;max-width:none}
+    .info-item + .info-item{border-left:none;border-top:1px solid rgba(255,255,255,.14)}
+    .cards,.learn-grid,.form-grid{grid-template-columns:1fr}
+    .deposit-box,.mentor-grid,.qr-wrap{grid-template-columns:1fr}
+    .qr-box{justify-self:center}
+    section{padding:56px 0}
+    .nav .pill{display:none}
+    .sticky-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px 16px;
+      background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-top:1px solid var(--line);
+      box-shadow:0 -8px 24px rgba(0,0,0,.08)}
+    .sticky-cta .btn{width:100%;justify-content:center}
+    body{padding-bottom:78px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav">
+      <div class="brand"><span class="dot">🤖</span> Cầm tay chỉ AI</div>
+      <span class="pill">🔥 Chỉ <b style="margin:0 3px">99</b> suất</span>
+    </nav>
+
+    <div class="hero-grid">
+      <div class="hero-left">
+        <span class="pill">⚡ Workshop online · Miễn phí · Cọc hoàn 100%</span>
+        <h1>Biết dùng <span class="hl">AI</span>,<br/>dân văn phòng làm việc nhanh gấp 3</h1>
+        <p class="lead">2 tiếng "cầm tay chỉ việc" qua Zoom. Bắt đầu từ con số 0 — không cần biết kỹ thuật, chỉ cần biết gõ chữ.</p>
+
+        <div class="info-bar">
+          <div class="info-item"><span class="i">📅</span><div><b>18/07/2026</b><small>Thứ Bảy</small></div></div>
+          <div class="info-item"><span class="i">🕗</span><div><b>20:00–22:00</b><small>2 tiếng</small></div></div>
+          <div class="info-item"><span class="i">💻</span><div><b>Qua Zoom</b><small>Online</small></div></div>
+        </div>
+
+        <p class="seats-inline">🔥 Lớp giới hạn <b>99 suất</b> — kèm sát từng người, hoàn cọc 100% sau khi thực hành.</p>
+      </div>
+
+      <aside class="acard">
+        <div class="cd-label">⏳ Sự kiện bắt đầu sau</div>
+        <div class="countdown" id="countdown">
+          <div class="cd-box"><b id="cdD">00</b><small>Ngày</small></div>
+          <div class="cd-box"><b id="cdH">00</b><small>Giờ</small></div>
+          <div class="cd-box"><b id="cdM">00</b><small>Phút</small></div>
+          <div class="cd-box"><b id="cdS">00</b><small>Giây</small></div>
+        </div>
+        <hr/>
+        <ul>
+          <li><span class="ck">✓</span> Viết email, báo cáo trong 2 phút thay vì 30 phút</li>
+          <li><span class="ck">✓</span> Tóm tắt tài liệu dài chỉ bằng 1 câu lệnh</li>
+          <li><span class="ck">✓</span> Tư duy giao việc cho AI — không phụ thuộc prompt mẫu</li>
+        </ul>
+        <div class="seat-wrap">
+          <div class="seat-bar"><i></i></div>
+          <div class="seat-text">Còn <b>99/99</b> suất trống</div>
+        </div>
+        <a href="#dang-ky" class="btn">Giữ chỗ ngay →</a>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PAIN ============ -->
+<section class="center">
+  <div class="wrap">
+    <span class="eyebrow">Nghe quen không?</span>
+    <h2>Mỗi ngày văn phòng, bạn đang mất thời gian vì…</h2>
+    <p class="sub">AI không thay thế bạn — nhưng người biết dùng AI sẽ làm xong việc trước bạn rất xa.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="ico">😮‍💨</div>
+        <h3>Soạn email, báo cáo mãi không xong</h3>
+        <p>Ngồi nghĩ câu chữ cả buổi, sửa tới sửa lui mà vẫn thấy chưa ưng.</p>
+      </div>
+      <div class="card">
+        <div class="ico">📚</div>
+        <h3>Tài liệu dài đọc không hết</h3>
+        <p>Hàng chục trang PDF, file họp, hợp đồng… không biết lấy ý chính ở đâu.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🤷</div>
+        <h3>Nghe AI nhiều mà không biết bắt đầu</h3>
+        <p>Mở ChatGPT lên rồi… ngồi nhìn, không biết hỏi gì cho ra việc.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEARN ============ -->
+<section class="learn">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Nội dung workshop</span>
+      <h2>Bạn sẽ học được gì?</h2>
+      <p class="sub">Thực hành trực tiếp ngay trong buổi học — học tới đâu làm được tới đó.</p>
+    </div>
+
+    <div class="learn-grid">
+      <div class="learn-item"><div class="n">1</div><div>
+        <h4>Làm quen AI từ con số 0</h4><p>Hiểu AI làm được gì, không làm được gì, và cách "giao việc" đúng.</p></div></div>
+      <div class="learn-item"><div class="n">2</div><div>
+        <h4>Viết email & văn bản công việc</h4><p>Soạn email, thông báo, biên bản chuyên nghiệp chỉ trong vài giây.</p></div></div>
+      <div class="learn-item"><div class="n">3</div><div>
+        <h4>Tóm tắt & phân tích tài liệu</h4><p>Đọc nhanh PDF, file dài, lấy ý chính và trả lời câu hỏi từ tài liệu.</p></div></div>
+      <div class="learn-item"><div class="n">4</div><div>
+        <h4>Xử lý Excel & dữ liệu</h4><p>Viết công thức, làm sạch dữ liệu, tạo bảng tính bằng câu lệnh tiếng Việt.</p></div></div>
+      <div class="learn-item"><div class="n">5</div><div>
+        <h4>Tạo slide thuyết trình</h4><p>Lên dàn ý và nội dung slide cho buổi họp nhanh gấp nhiều lần.</p></div></div>
+      <div class="learn-item"><div class="n">6</div><div>
+        <h4>Tư duy chinh phục vạn câu lệnh</h4><p>Nắm gốc tư duy giao việc cho AI — tự xử lý mọi tình huống mà không phụ thuộc vào prompt mẫu.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOSIT ============ -->
+<section>
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Minh bạch 100%</span>
+      <h2>Vì sao có cọc giữ chỗ?</h2>
+      <p class="sub">Workshop hoàn toàn miễn phí. Khoản cọc chỉ để giữ chỗ cho người học nghiêm túc — và bạn được hoàn lại đầy đủ.</p>
+    </div>
+
+    <div class="deposit-box">
+      <div>
+        <h2 style="font-size:1.6rem">Học thật · Hoàn thật</h2>
+        <div class="steps">
+          <div class="step"><div class="b">1</div><div>Đăng ký & chuyển <b>cọc giữ chỗ 200.000đ</b> qua mã QR hiện ngay trên trang.</div></div>
+          <div class="step"><div class="b">2</div><div>Tham gia đầy đủ buổi học và <b>thực hành cùng mentor</b>.</div></div>
+          <div class="step"><div class="b">3</div><div>Hoàn thành <b>≥ 60% yêu cầu thực hành</b> của mentor trong buổi.</div></div>
+          <div class="step"><div class="b">4</div><div>Được <b>hoàn 100% tiền cọc trong vòng 7 ngày</b> sau workshop.</div></div>
+        </div>
+      </div>
+      <div class="refund">
+        <div class="big">200.000đ</div>
+        <div style="font-weight:700;margin-top:4px">cọc giữ chỗ — hoàn lại đủ</div>
+        <ul>
+          <li>Lọc người học thật sự nghiêm túc</li>
+          <li>Lớp nhỏ, mentor kèm sát từng người</li>
+          <li>Hoàn 100% qua chuyển khoản trong 7 ngày</li>
+          <li>Bạn không mất gì nếu học và thực hành</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENTOR ============ -->
+<section style="background:linear-gradient(180deg,#faf9ff,#f3f0ff)">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Người hướng dẫn</span>
+      <h2>Mentor của bạn</h2>
+    </div>
+    <div class="mentor-grid">
+      <div class="mentor-photo">
+        <img src="https://hungkescy.com/images/avatar.webp" alt="Mentor Hưng Kescy"
+             style="width:100%;height:100%;object-fit:cover;display:block"
+             onerror="this.style.display='none';this.parentNode.querySelector('.av').style.display='block'" />
+        <div class="av" style="display:none;position:absolute">HK</div>
+      </div>
+      <div class="mentor-info">
+        <h2>Hưng Kescy</h2>
+        <div class="mentor-role">CEO &amp; Founder KesFlow · Giám đốc Chuyển đổi số JCI</div>
+        <p>Hưng Kescy là chuyên gia nổi bật tại Việt Nam trong lĩnh vực Trí tuệ Nhân tạo (AI), Tự động hóa (Automation) và Digital Marketing. Anh đồng hành cùng nhiều cá nhân và doanh nghiệp đưa AI vào công việc hằng ngày một cách thực tế, dễ áp dụng.</p>
+        <div class="creds">
+          <span class="cred">🤖 Chuyên gia AI &amp; Automation</span>
+          <span class="cred">🚀 CEO &amp; Founder KesFlow</span>
+          <span class="cred">📈 Giám đốc Chuyển đổi số JCI</span>
+          <span class="cred">🎯 Digital Marketing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGISTER + QR ============ -->
+<section class="register" id="dang-ky">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow" style="background:rgba(255,255,255,.15);color:#fff">Đăng ký tham gia</span>
+      <h2>Giữ chỗ của bạn ngay</h2>
+      <p class="sub">Điền thông tin bên dưới. Sau khi đăng ký, mã QR cọc giữ chỗ sẽ hiện ra để bạn hoàn tất.</p>
+    </div>
+
+    <div class="form-card">
+      <!-- FORM -->
+      <form id="regForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label>Họ và tên <span class="req">*</span></label>
+            <input type="text" name="hoten" required placeholder="Nguyễn Văn A" />
+          </div>
+          <div class="field">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="ban@email.com" />
+            <span class="form-note">Link Zoom sẽ gửi qua email này.</span>
+          </div>
+          <div class="field">
+            <label>Số điện thoại / Zalo</label>
+            <input type="tel" name="sdt" placeholder="09xx xxx xxx" />
+          </div>
+          <div class="field">
+            <label>Nghề nghiệp / Phòng ban</label>
+            <input type="text" name="nghe" placeholder="VD: Kế toán, Nhân sự, Marketing…" />
+          </div>
+          <div class="field full">
+            <label>Bạn mong muốn học được gì từ workshop?</label>
+            <textarea name="mongmuon" placeholder="VD: Mình muốn dùng AI để viết email và làm báo cáo nhanh hơn…"></textarea>
+          </div>
+          <div class="field full">
+            <label>Bạn biết đến workshop qua đâu?</label>
+            <select name="nguon">
+              <option value="">— Chọn một —</option>
+              <option>Facebook</option>
+              <option>Bạn bè giới thiệu</option>
+              <option>Group / Cộng đồng</option>
+              <option>Zalo</option>
+              <option>TikTok</option>
+              <option>Khác</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn" id="submitBtn">Đăng ký &amp; nhận mã QR giữ chỗ →</button>
+        </div>
+        <div class="msg err" id="errMsg"></div>
+      </form>
+
+      <!-- SUCCESS / QR -->
+      <div class="success" id="successBox">
+        <div class="badge-ok">✅ Đăng ký thành công!</div>
+        <h2 style="color:var(--ink);font-size:1.6rem">Bước cuối: chuyển cọc giữ chỗ 200.000đ</h2>
+        <p style="color:var(--muted);margin:8px 0 24px">Quét mã QR bên dưới để giữ chỗ. Nội dung chuyển khoản đã điền sẵn — bạn chỉ cần xác nhận. Tiền cọc sẽ hoàn 100% sau khi bạn hoàn thành thực hành.</p>
+
+        <div class="qr-wrap">
+          <div class="qr-box">
+            <!-- QR MÔ PHỎNG — thay bằng QR VietQR thật theo hướng dẫn -->
+            <img id="qrImg" alt="Mã QR chuyển khoản cọc giữ chỗ" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='230' height='230'><rect width='230' height='230' fill='white'/><g fill='%231b1340'><rect x='10' y='10' width='60' height='60'/><rect x='20' y='20' width='40' height='40' fill='white'/><rect x='30' y='30' width='20' height='20'/><rect x='160' y='10' width='60' height='60'/><rect x='170' y='20' width='40' height='40' fill='white'/><rect x='180' y='30' width='20' height='20'/><rect x='10' y='160' width='60' height='60'/><rect x='20' y='170' width='40' height='40' fill='white'/><rect x='30' y='180' width='20' height='20'/><rect x='90' y='20' width='15' height='15'/><rect x='120' y='40' width='15' height='15'/><rect x='90' y='90' width='15' height='15'/><rect x='110' y='90' width='15' height='15'/><rect x='130' y='110' width='15' height='15'/><rect x='160' y='100' width='15' height='15'/><rect x='180' y='130' width='15' height='15'/><rect x='90' y='130' width='15' height='15'/><rect x='100' y='160' width='15' height='15'/><rect x='150' y='160' width='15' height='15'/><rect x='170' y='180' width='15' height='15'/><rect x='200' y='160' width='15' height='15'/><rect x='130' y='190' width='15' height='15'/></g><text x='115' y='150' font-size='9' fill='%237c3aed' text-anchor='middle' font-family='Arial'>QR MÔ PHỎNG</text></svg>" />
+            <div class="amt">200.000đ</div>
+          </div>
+          <div style="width:100%">
+            <div class="bank-line"><span>Ngân hàng</span><b id="bBank">Vietcombank <button class="copy" data-c="Vietcombank">Sao chép</button></b></div>
+            <div class="bank-line"><span>Số tài khoản</span><b id="bAcc">0123456789 <button class="copy" data-c="0123456789">Sao chép</button></b></div>
+            <div class="bank-line"><span>Chủ tài khoản</span><b>HUNG KESCY</b></div>
+            <div class="bank-line"><span>Số tiền</span><b>200.000đ</b></div>
+            <div class="bank-line"><span>Nội dung CK</span><b id="bNote">COC AI <span style="opacity:.6">[Tên bạn]</span> <button class="copy" data-c="COC AI">Sao chép</button></b></div>
+            <p class="form-note" style="margin-top:14px">Sau khi chuyển khoản, đội ngũ sẽ xác nhận và gửi link Zoom qua email trong 24h. Giữ lại biên lai để được hoàn cọc nhé!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section>
+  <div class="wrap" style="max-width:780px">
+    <div class="center"><span class="eyebrow">Giải đáp</span><h2>Câu hỏi thường gặp</h2></div>
+    <div style="margin-top:34px">
+      <details open><summary>Mình chưa biết gì về AI, tham gia được không?</summary>
+        <p>Hoàn toàn được! Workshop thiết kế riêng cho người bắt đầu từ con số 0. Bạn chỉ cần biết dùng máy tính và gõ chữ là theo kịp.</p></details>
+      <details><summary>Tiền cọc 200k có chắc chắn được hoàn không?</summary>
+        <p>Có. Bạn được hoàn 100% trong vòng 7 ngày nếu tham gia buổi học và hoàn thành tối thiểu 60% yêu cầu thực hành của mentor. Đây chỉ là cách giữ chỗ cho người học nghiêm túc.</p></details>
+      <details><summary>Cần chuẩn bị gì trước buổi học?</summary>
+        <p>Một máy tính có kết nối Internet, tài khoản Zoom (miễn phí) và một tài khoản ChatGPT miễn phí. Hướng dẫn cài đặt sẽ gửi qua email trước buổi học.</p></details>
+      <details><summary>Workshop có ghi hình lại không?</summary>
+        <p>Buổi học tập trung vào thực hành trực tiếp cùng mentor nên khuyến khích bạn tham gia đầy đủ. Thông tin về bản ghi (nếu có) sẽ được thông báo qua email.</p></details>
+      <details><summary>Sau khi đăng ký thì làm gì tiếp?</summary>
+        <p>Bạn chuyển cọc qua mã QR hiện trên trang, đội ngũ xác nhận và gửi link Zoom qua email trong 24h. Vậy là xong!</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="dot">🤖</span> Cầm tay chỉ AI</div>
+    <p>Workshop hướng dẫn dùng AI cho dân văn phòng — cùng mentor Hưng Kescy.</p>
+    <div class="fcontact">
+      <a href="https://hungkescy.com/" target="_blank" rel="noopener">🌐 hungkescy.com</a>
+      <a href="#dang-ky">📝 Đăng ký</a>
+      <a href="#">💬 Zalo / Fanpage</a>
+    </div>
+    <p class="fnote">© 2026 Cầm tay chỉ AI. Workshop miễn phí · cọc giữ chỗ hoàn 100%.</p>
+  </div>
+</footer>
+
+<div class="sticky-cta"><a href="#dang-ky" class="btn">Giữ chỗ ngay · còn 99 suất →</a></div>
+
+<script>
+/* ====== CẤU HÌNH — sửa ở đây ====== */
+const CONFIG = {
+  // ===== CÁCH 1 (KHUYÊN DÙNG): Google Form — không cần Apps Script, không bị chặn OAuth =====
+  // Dán link formResponse và điền entry ID cho từng trường (xem HUONG-DAN.md, Bước A).
+  GFORM: {
+    action: "https://docs.google.com/forms/d/e/1FAIpQLSeK0QNaB8gyJdriU-wJwicuLVbqVtdMXVCuMWoLPFXwfYFbSw/formResponse",
+    fields: {
+      hoten:    "entry.1442057630",
+      email:    "entry.2053792154",
+      sdt:      "entry.43140288",
+      nghe:     "entry.1096386935",
+      mongmuon: "entry.283194132",
+      nguon:    "entry.801975942"
+    }
+  },
+  // ===== CÁCH 2 (tuỳ chọn): Apps Script Web App — chỉ dùng nếu bạn KHÔNG bị chặn =====
+  SHEET_ENDPOINT: "",
+  // Thông tin tài khoản nhận cọc — thay bằng tài khoản thật.
+  BANK: { name: "Vietcombank", account: "0123456789", holder: "HUNG KESCY", amount: 200000 }
+};
+
+const form = document.getElementById('regForm');
+const successBox = document.getElementById('successBox');
+const errMsg = document.getElementById('errMsg');
+const submitBtn = document.getElementById('submitBtn');
+
+function showError(t){ errMsg.textContent = t; errMsg.classList.add('err'); errMsg.style.display='block'; }
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  errMsg.style.display='none';
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  if(!data.hoten || !data.hoten.trim()){ showError('Vui lòng nhập họ tên.'); return; }
+  if(!data.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)){ showError('Email chưa hợp lệ.'); return; }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Đang gửi…';
+  data.thoigian = new Date().toLocaleString('vi-VN');
+
+  try{
+    // CÁCH 1: gửi vào Google Form (ưu tiên nếu đã cấu hình)
+    if(CONFIG.GFORM && CONFIG.GFORM.action){
+      const fd = new FormData();
+      Object.keys(CONFIG.GFORM.fields).forEach(k=>{
+        if(data[k] != null) fd.append(CONFIG.GFORM.fields[k], data[k]);
+      });
+      await fetch(CONFIG.GFORM.action, { method:'POST', mode:'no-cors', body: fd });
+    }
+    // CÁCH 2: gửi qua Apps Script (nếu dùng được)
+    else if(CONFIG.SHEET_ENDPOINT){
+      await fetch(CONFIG.SHEET_ENDPOINT, {
+        method:'POST',
+        mode:'no-cors',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body: JSON.stringify(data)
+      });
+    }
+    // cập nhật nội dung CK theo tên người đăng ký
+    const note = 'COC AI ' + (data.hoten || '').toUpperCase();
+    document.getElementById('bNote').innerHTML = note + ' <button class="copy" data-c="'+note+'">Sao chép</button>';
+    bindCopy();
+    // hiện QR, ẩn form
+    form.style.display='none';
+    successBox.classList.add('show');
+    successBox.scrollIntoView({behavior:'smooth', block:'start'});
+  }catch(err){
+    showError('Có lỗi khi gửi đăng ký. Vui lòng thử lại hoặc liên hệ qua Zalo.');
+    submitBtn.disabled=false;
+    submitBtn.textContent='Đăng ký & nhận mã QR giữ chỗ →';
+  }
+});
+
+function bindCopy(){
+  document.querySelectorAll('.copy').forEach(b=>{
+    b.onclick = ()=>{ navigator.clipboard.writeText(b.dataset.c); const o=b.textContent; b.textContent='Đã chép ✓'; setTimeout(()=>b.textContent=o,1500); };
+  });
+}
+bindCopy();
+
+/* ===== Đếm ngược tới giờ workshop ===== */
+// Đổi ngày/giờ sự kiện tại đây (định dạng: năm, tháng-1, ngày, giờ, phút)
+const EVENT_TIME = new Date(2026, 6, 18, 20, 0, 0).getTime(); // 18/07/2026 20:00
+const pad = n => String(n).padStart(2,'0');
+function tickCountdown(){
+  const diff = EVENT_TIME - Date.now();
+  const el = id => document.getElementById(id);
+  if(diff <= 0){
+    ['cdD','cdH','cdM','cdS'].forEach(i=>{ if(el(i)) el(i).textContent='00'; });
+    const lbl = document.querySelector('.cd-label'); if(lbl) lbl.textContent='🔴 Sự kiện đang diễn ra';
+    return;
+  }
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor(diff%86400000/3600000);
+  const m = Math.floor(diff%3600000/60000);
+  const s = Math.floor(diff%60000/1000);
+  if(el('cdD')) el('cdD').textContent = pad(d);
+  if(el('cdH')) el('cdH').textContent = pad(h);
+  if(el('cdM')) el('cdM').textContent = pad(m);
+  if(el('cdS')) el('cdS').textContent = pad(s);
+}
+tickCountdown();
+setInterval(tickCountdown, 1000);
+</script>
+</body>
+</html>
