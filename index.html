@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Workshop "Cầm tay chỉ AI" — Dùng AI cho dân văn phòng | Hưng Kescy</title>
-<meta name="description" content="Workshop 2 tiếng online qua Zoom hướng dẫn dân văn phòng dùng AI từ con số 0. Miễn phí, chỉ cọc giữ chỗ và hoàn 100%. Giới hạn 99 suất." />
+<meta name="description" content="Workshop 3 buổi (mỗi buổi 2 tiếng) online qua Zoom hướng dẫn dân văn phòng dùng AI từ con số 0. Miễn phí, chỉ cọc giữ chỗ và hoàn 100%. Giới hạn 99 suất." />
 <!-- Open Graph -->
 <meta property="og:title" content="Workshop Cầm tay chỉ AI — Dùng AI cho dân văn phòng" />
-<meta property="og:description" content="2 tiếng online, học AI từ con số 0. Miễn phí, cọc giữ chỗ hoàn 100%. Chỉ 99 suất." />
+<meta property="og:description" content="3 buổi × 2 tiếng online, học AI từ con số 0. Miễn phí, cọc giữ chỗ hoàn 100%. Chỉ 99 suất." />
 <meta property="og:type" content="website" />
 <!-- Font tiếng Việt: Be Vietnam Pro -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -243,22 +243,22 @@
   <div class="wrap">
     <nav class="nav">
       <div class="brand"><span class="dot">🤖</span> Cầm tay chỉ AI</div>
-      <span class="pill">🔥 Chỉ <b style="margin:0 3px">99</b> suất</span>
+      <span class="pill">🔥 Còn <b style="margin:0 3px" data-seatleft>99</b> suất</span>
     </nav>
 
     <div class="hero-grid">
       <div class="hero-left">
         <span class="pill">⚡ Workshop online · Miễn phí · Cọc hoàn 100%</span>
         <h1>Biết dùng <span class="hl">AI</span>,<br/>dân văn phòng làm việc nhanh gấp 3</h1>
-        <p class="lead">2 tiếng "cầm tay chỉ việc" qua Zoom. Bắt đầu từ con số 0 — không cần biết kỹ thuật, chỉ cần biết gõ chữ.</p>
+        <p class="lead">3 buổi (mỗi buổi 2 tiếng) "cầm tay chỉ việc" qua Zoom. Bắt đầu từ con số 0 — không cần biết kỹ thuật, chỉ cần biết gõ chữ.</p>
 
         <div class="info-bar">
-          <div class="info-item"><span class="i">📅</span><div><b>18/07/2026</b><small>Thứ Bảy</small></div></div>
-          <div class="info-item"><span class="i">🕗</span><div><b>20:00–22:00</b><small>2 tiếng</small></div></div>
+          <div class="info-item"><span class="i">📅</span><div><b>Khai giảng 18/07</b><small>3 buổi</small></div></div>
+          <div class="info-item"><span class="i">🕗</span><div><b>20:00–22:00</b><small>Mỗi buổi 2 tiếng</small></div></div>
           <div class="info-item"><span class="i">💻</span><div><b>Qua Zoom</b><small>Online</small></div></div>
         </div>
 
-        <p class="seats-inline">🔥 Lớp giới hạn <b>99 suất</b> — kèm sát từng người, hoàn cọc 100% sau khi thực hành.</p>
+        <p class="seats-inline">🔥 Lớp giới hạn <b id="seatTotal">99 suất</b> — kèm sát từng người, hoàn cọc 100% sau khi thực hành.</p>
       </div>
 
       <aside class="acard">
@@ -276,8 +276,8 @@
           <li><span class="ck">✓</span> Tư duy giao việc cho AI — không phụ thuộc prompt mẫu</li>
         </ul>
         <div class="seat-wrap">
-          <div class="seat-bar"><i></i></div>
-          <div class="seat-text">Còn <b>99/99</b> suất trống</div>
+          <div class="seat-bar"><i id="seatBar"></i></div>
+          <div class="seat-text">Còn <b id="seatText">99/99</b> suất trống</div>
         </div>
         <a href="#dang-ky" class="btn">Giữ chỗ ngay →</a>
       </aside>
@@ -352,8 +352,8 @@
         <h2 style="font-size:1.6rem">Học thật · Hoàn thật</h2>
         <div class="steps">
           <div class="step"><div class="b">1</div><div>Đăng ký & chuyển <b>cọc giữ chỗ 200.000đ</b> qua mã QR hiện ngay trên trang.</div></div>
-          <div class="step"><div class="b">2</div><div>Tham gia đầy đủ buổi học và <b>thực hành cùng mentor</b>.</div></div>
-          <div class="step"><div class="b">3</div><div>Hoàn thành <b>≥ 60% yêu cầu thực hành</b> của mentor trong buổi.</div></div>
+          <div class="step"><div class="b">2</div><div>Tham gia đầy đủ <b>3 buổi</b> và <b>thực hành cùng mentor</b>.</div></div>
+          <div class="step"><div class="b">3</div><div>Hoàn thành <b>≥ 80% nhiệm vụ được giao</b> trong khóa học.</div></div>
           <div class="step"><div class="b">4</div><div>Được <b>hoàn 100% tiền cọc trong vòng 7 ngày</b> sau workshop.</div></div>
         </div>
       </div>
@@ -414,32 +414,32 @@
       <form id="regForm" novalidate>
         <div class="form-grid">
           <div class="field">
-            <label>Họ và tên <span class="req">*</span></label>
-            <input type="text" name="hoten" required placeholder="Nguyễn Văn A" />
+            <label for="f-hoten">Họ và tên <span class="req">*</span></label>
+            <input id="f-hoten" type="text" name="hoten" required autocomplete="name" placeholder="Nguyễn Văn A" />
           </div>
           <div class="field">
-            <label>Email <span class="req">*</span></label>
-            <input type="email" name="email" required placeholder="ban@email.com" />
+            <label for="f-email">Email <span class="req">*</span></label>
+            <input id="f-email" type="email" name="email" required autocomplete="email" placeholder="ban@email.com" />
             <span class="form-note">Link Zoom sẽ gửi qua email này.</span>
           </div>
           <div class="field">
-            <label>Số điện thoại / Zalo <span class="req">*</span></label>
-            <input type="tel" name="sdt" required inputmode="numeric" maxlength="11" pattern="\d{10,11}"
-                   placeholder="VD: 0901234567"
+            <label for="f-sdt">Số điện thoại / Zalo <span class="req">*</span></label>
+            <input id="f-sdt" type="tel" name="sdt" required inputmode="numeric" maxlength="11" pattern="\d{10,11}"
+                   autocomplete="tel" placeholder="VD: 0901234567"
                    oninput="this.value=this.value.replace(/\D/g,'').slice(0,11)" />
             <span class="form-note">Chỉ nhập số, 10–11 chữ số. Dùng làm nội dung chuyển khoản cọc.</span>
           </div>
           <div class="field">
-            <label>Nghề nghiệp / Phòng ban</label>
-            <input type="text" name="nghe" placeholder="VD: Kế toán, Nhân sự, Marketing…" />
+            <label for="f-nghe">Nghề nghiệp / Phòng ban</label>
+            <input id="f-nghe" type="text" name="nghe" placeholder="VD: Kế toán, Nhân sự, Marketing…" />
           </div>
           <div class="field full">
-            <label>Bạn mong muốn học được gì từ workshop?</label>
-            <textarea name="mongmuon" placeholder="VD: Mình muốn dùng AI để viết email và làm báo cáo nhanh hơn…"></textarea>
+            <label for="f-mongmuon">Bạn mong muốn học được gì từ workshop?</label>
+            <textarea id="f-mongmuon" name="mongmuon" placeholder="VD: Mình muốn dùng AI để viết email và làm báo cáo nhanh hơn…"></textarea>
           </div>
           <div class="field full">
-            <label>Bạn biết đến workshop qua đâu?</label>
-            <select name="nguon">
+            <label for="f-nguon">Bạn biết đến workshop qua đâu?</label>
+            <select id="f-nguon" name="nguon">
               <option value="">— Chọn một —</option>
               <option>Facebook</option>
               <option>Bạn bè giới thiệu</option>
@@ -451,10 +451,17 @@
           </div>
         </div>
 
+        <!-- Honeypot chống bot: người thật không thấy, bot điền vào sẽ bị loại -->
+        <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+          <label>Website (đừng điền)</label>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
         <div class="submit-row">
           <button type="submit" class="btn" id="submitBtn">Đăng ký &amp; nhận mã QR giữ chỗ →</button>
         </div>
-        <div class="msg err" id="errMsg"></div>
+        <p class="form-note" style="text-align:center;margin-top:10px">Bằng việc đăng ký, bạn đồng ý để chúng tôi liên hệ qua email/Zalo về workshop. Thông tin chỉ dùng cho mục đích này.</p>
+        <div class="msg err" id="errMsg" role="alert" aria-live="assertive"></div>
       </form>
 
       <!-- SUCCESS / QR -->
@@ -466,8 +473,9 @@
         <div class="qr-wrap">
           <div class="qr-box">
             <!-- QR MÔ PHỎNG — thay bằng QR VietQR thật theo hướng dẫn -->
-            <img id="qrImg" alt="Mã QR chuyển khoản cọc giữ chỗ" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='230' height='230'><rect width='230' height='230' fill='white'/><g fill='%231b1340'><rect x='10' y='10' width='60' height='60'/><rect x='20' y='20' width='40' height='40' fill='white'/><rect x='30' y='30' width='20' height='20'/><rect x='160' y='10' width='60' height='60'/><rect x='170' y='20' width='40' height='40' fill='white'/><rect x='180' y='30' width='20' height='20'/><rect x='10' y='160' width='60' height='60'/><rect x='20' y='170' width='40' height='40' fill='white'/><rect x='30' y='180' width='20' height='20'/><rect x='90' y='20' width='15' height='15'/><rect x='120' y='40' width='15' height='15'/><rect x='90' y='90' width='15' height='15'/><rect x='110' y='90' width='15' height='15'/><rect x='130' y='110' width='15' height='15'/><rect x='160' y='100' width='15' height='15'/><rect x='180' y='130' width='15' height='15'/><rect x='90' y='130' width='15' height='15'/><rect x='100' y='160' width='15' height='15'/><rect x='150' y='160' width='15' height='15'/><rect x='170' y='180' width='15' height='15'/><rect x='200' y='160' width='15' height='15'/><rect x='130' y='190' width='15' height='15'/></g><text x='115' y='150' font-size='9' fill='%237c3aed' text-anchor='middle' font-family='Arial'>QR MÔ PHỎNG</text></svg>" />
+            <img id="qrImg" alt="Mã QR chuyển khoản cọc giữ chỗ" onerror="this.style.display='none';var n=document.getElementById('qrFallback');if(n)n.style.display='block';" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='230' height='230'><rect width='230' height='230' fill='white'/><g fill='%231b1340'><rect x='10' y='10' width='60' height='60'/><rect x='20' y='20' width='40' height='40' fill='white'/><rect x='30' y='30' width='20' height='20'/><rect x='160' y='10' width='60' height='60'/><rect x='170' y='20' width='40' height='40' fill='white'/><rect x='180' y='30' width='20' height='20'/><rect x='10' y='160' width='60' height='60'/><rect x='20' y='170' width='40' height='40' fill='white'/><rect x='30' y='180' width='20' height='20'/><rect x='90' y='20' width='15' height='15'/><rect x='120' y='40' width='15' height='15'/><rect x='90' y='90' width='15' height='15'/><rect x='110' y='90' width='15' height='15'/><rect x='130' y='110' width='15' height='15'/><rect x='160' y='100' width='15' height='15'/><rect x='180' y='130' width='15' height='15'/><rect x='90' y='130' width='15' height='15'/><rect x='100' y='160' width='15' height='15'/><rect x='150' y='160' width='15' height='15'/><rect x='170' y='180' width='15' height='15'/><rect x='200' y='160' width='15' height='15'/><rect x='130' y='190' width='15' height='15'/></g><text x='115' y='150' font-size='9' fill='%237c3aed' text-anchor='middle' font-family='Arial'>QR MÔ PHỎNG</text></svg>" />
             <div class="amt">200.000đ</div>
+            <div id="qrFallback" style="display:none;font-size:.85rem;color:#b91c1c;font-weight:600;max-width:230px">Không tải được mã QR. Vui lòng chuyển khoản thủ công theo thông tin bên cạnh.</div>
           </div>
           <div style="width:100%">
             <div class="bank-line"><span>Ngân hàng</span><b id="bBank">Vietcombank <button class="copy" data-c="Vietcombank">Sao chép</button></b></div>
@@ -475,7 +483,7 @@
             <div class="bank-line"><span>Chủ tài khoản</span><b id="bHolder">HUNG KESCY</b></div>
             <div class="bank-line"><span>Số tiền</span><b id="bAmount">200.000đ</b></div>
             <div class="bank-line"><span>Nội dung CK</span><b id="bNote">COC AI <span style="opacity:.6">[SĐT của bạn]</span> <button class="copy" data-c="COC AI">Sao chép</button></b></div>
-            <p class="form-note" style="margin-top:14px">Sau khi chuyển khoản, đội ngũ sẽ xác nhận và gửi link Zoom qua email trong 24h. Giữ lại biên lai để được hoàn cọc nhé!</p>
+            <p class="form-note" style="margin-top:14px"><b>Giữ lại biên lai chuyển khoản</b> để được hoàn cọc. Đội ngũ sẽ xác nhận và gửi link Zoom qua email trong 24h. Nếu sau 24h chưa nhận được, vui lòng nhắn Zalo kèm SĐT đã chuyển để được hỗ trợ.</p>
           </div>
         </div>
       </div>
@@ -491,7 +499,7 @@
       <details open><summary>Mình chưa biết gì về AI, tham gia được không?</summary>
         <p>Hoàn toàn được! Workshop thiết kế riêng cho người bắt đầu từ con số 0. Bạn chỉ cần biết dùng máy tính và gõ chữ là theo kịp.</p></details>
       <details><summary>Tiền cọc 200k có chắc chắn được hoàn không?</summary>
-        <p>Có. Bạn được hoàn 100% trong vòng 7 ngày nếu tham gia buổi học và hoàn thành tối thiểu 60% yêu cầu thực hành của mentor. Đây chỉ là cách giữ chỗ cho người học nghiêm túc.</p></details>
+        <p>Có. Bạn được hoàn 100% trong vòng 7 ngày nếu tham gia đầy đủ 3 buổi và hoàn thành tối thiểu 80% nhiệm vụ được giao trong khóa học. Đây chỉ là cách giữ chỗ cho người học nghiêm túc.</p></details>
       <details><summary>Cần chuẩn bị gì trước buổi học?</summary>
         <p>Một máy tính có kết nối Internet, tài khoản Zoom (miễn phí) và một tài khoản ChatGPT miễn phí. Hướng dẫn cài đặt sẽ gửi qua email trước buổi học.</p></details>
       <details><summary>Workshop có ghi hình lại không?</summary>
@@ -516,7 +524,7 @@
   </div>
 </footer>
 
-<div class="sticky-cta"><a href="#dang-ky" class="btn">Giữ chỗ ngay · còn 99 suất →</a></div>
+<div class="sticky-cta"><a href="#dang-ky" class="btn">Giữ chỗ ngay · còn <span data-seatleft>99</span> suất →</a></div>
 
 <script>
 /* ====== CẤU HÌNH — sửa ở đây ====== */
@@ -538,7 +546,9 @@ const CONFIG = {
   SHEET_ENDPOINT: "",
   // Thông tin tài khoản nhận cọc — thay bằng tài khoản thật.
   // bankCode: mã ngân hàng VietQR (VCB, TCB, MB, ACB, BIDV, ICB=VietinBank, VPB, VBA=Agribank…)
-  BANK: { bankCode: "VCB", name: "Vietcombank", account: "0123456789", holder: "HUNG KESCY", amount: 200000 }
+  BANK: { bankCode: "VCB", name: "Vietcombank", account: "0123456789", holder: "HUNG KESCY", amount: 200000 },
+  // Số suất hiển thị (1 nguồn duy nhất). Cập nhật "left" theo thực tế để tạo cảm giác khan hiếm.
+  SEATS: { total: 99, left: 27 }
 };
 
 const form = document.getElementById('regForm');
@@ -548,10 +558,16 @@ const submitBtn = document.getElementById('submitBtn');
 
 function showError(t){ errMsg.textContent = t; errMsg.classList.add('err'); errMsg.style.display='block'; }
 
+let submitting = false;
 form.addEventListener('submit', async function(e){
   e.preventDefault();
+  if(submitting) return;            // chặn double-submit
   errMsg.style.display='none';
   const data = Object.fromEntries(new FormData(form).entries());
+
+  // Honeypot: nếu ô ẩn "website" có giá trị → là bot, im lặng bỏ qua
+  if(data.website){ return; }
+  delete data.website;
 
   if(!data.hoten || !data.hoten.trim()){ showError('Vui lòng nhập họ tên.'); return; }
   if(!data.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)){ showError('Email chưa hợp lệ.'); return; }
@@ -559,48 +575,64 @@ form.addEventListener('submit', async function(e){
   if(!/^\d{10,11}$/.test(sdtDigits)){ showError('Số điện thoại phải gồm 10–11 chữ số.'); return; }
   data.sdt = sdtDigits;
 
+  submitting = true;
   submitBtn.disabled = true;
+  const btnLabel = 'Đăng ký & nhận mã QR giữ chỗ →';
   submitBtn.textContent = 'Đang gửi…';
-  data.thoigian = new Date().toLocaleString('vi-VN');
+  data.thoigian = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+
+  // timeout: với no-cors đây là tín hiệu thất bại đáng tin duy nhất (mạng treo/đứt)
+  const ctrl = new AbortController();
+  const timer = setTimeout(()=>ctrl.abort(), 10000);
 
   try{
-    // CÁCH 1: gửi vào Google Form (ưu tiên nếu đã cấu hình)
     if(CONFIG.GFORM && CONFIG.GFORM.action){
       const fd = new FormData();
       Object.keys(CONFIG.GFORM.fields).forEach(k=>{
         if(data[k] != null) fd.append(CONFIG.GFORM.fields[k], data[k]);
       });
-      await fetch(CONFIG.GFORM.action, { method:'POST', mode:'no-cors', body: fd });
-    }
-    // CÁCH 2: gửi qua Apps Script (nếu dùng được)
-    else if(CONFIG.SHEET_ENDPOINT){
+      await fetch(CONFIG.GFORM.action, { method:'POST', mode:'no-cors', body: fd, signal: ctrl.signal });
+    } else if(CONFIG.SHEET_ENDPOINT){
       await fetch(CONFIG.SHEET_ENDPOINT, {
-        method:'POST',
-        mode:'no-cors',
+        method:'POST', mode:'no-cors', signal: ctrl.signal,
         headers:{'Content-Type':'text/plain;charset=utf-8'},
         body: JSON.stringify(data)
       });
     }
+    clearTimeout(timer);
+
     // nội dung chuyển khoản = COC AI + số điện thoại đăng ký
     const B = CONFIG.BANK;
     const note = 'COC AI ' + sdtDigits;
-    // tạo mã QR VietQR động, đã gắn sẵn nội dung CK kèm SĐT
     const qrUrl = 'https://img.vietqr.io/image/' + B.bankCode + '-' + B.account + '-compact2.png'
       + '?amount=' + B.amount + '&addInfo=' + encodeURIComponent(note)
       + '&accountName=' + encodeURIComponent(B.holder);
-    document.getElementById('qrImg').src = qrUrl;
-    document.getElementById('bNote').innerHTML = note + ' <button class="copy" data-c="'+note+'">Sao chép</button>';
-    bindCopy();
+    const qrImg = document.getElementById('qrImg');
+    qrImg.style.display=''; qrImg.src = qrUrl;
+    // dùng textContent (an toàn) thay cho innerHTML ghép chuỗi
+    renderNote(note);
     // hiện QR, ẩn form
     form.style.display='none';
     successBox.classList.add('show');
     successBox.scrollIntoView({behavior:'smooth', block:'start'});
   }catch(err){
-    showError('Có lỗi khi gửi đăng ký. Vui lòng thử lại hoặc liên hệ qua Zalo.');
+    clearTimeout(timer);
+    submitting = false;
+    showError('Gửi đăng ký chưa thành công (mạng chậm hoặc gián đoạn). Vui lòng thử lại, hoặc liên hệ qua Zalo nếu vẫn lỗi.');
     submitBtn.disabled=false;
-    submitBtn.textContent='Đăng ký & nhận mã QR giữ chỗ →';
+    submitBtn.textContent=btnLabel;
   }
 });
+
+// Hiển thị nội dung CK an toàn: text + nút Sao chép tạo bằng createElement
+function renderNote(note){
+  const el = document.getElementById('bNote');
+  el.textContent = note + ' ';
+  const b = document.createElement('button');
+  b.className = 'copy'; b.textContent = 'Sao chép'; b.dataset.c = note;
+  el.appendChild(b);
+  bindCopy();
+}
 
 function bindCopy(){
   document.querySelectorAll('.copy').forEach(b=>{
@@ -622,16 +654,44 @@ function bindCopy(){
 
 bindCopy();
 
+/* Số suất — 1 nguồn duy nhất từ CONFIG.SEATS (đồng bộ chữ + thanh tiến độ) */
+(function initSeats(){
+  const S = CONFIG.SEATS || { total: 99, left: 99 };
+  const total = S.total, left = Math.max(0, Math.min(S.left, total));
+  const taken = total - left;
+  const pct = total ? Math.round(taken / total * 100) : 0;
+  const set = (id, txt)=>{ const el=document.getElementById(id); if(el) el.textContent = txt; };
+  set('seatText', left + '/' + total);
+  set('seatTotal', total + ' suất');
+  const bar = document.getElementById('seatBar'); if(bar) bar.style.width = pct + '%';
+  // pill trên nav + sticky CTA
+  document.querySelectorAll('[data-seatleft]').forEach(el=> el.textContent = left);
+})();
+
+/* Ẩn sticky CTA khi khu đăng ký hiện trong màn hình (tránh che form/QR) */
+(function stickyCtaObserver(){
+  const sticky = document.querySelector('.sticky-cta');
+  const target = document.getElementById('dang-ky');
+  if(!sticky || !target || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{ sticky.style.opacity = en.isIntersecting ? '0' : '1';
+      sticky.style.pointerEvents = en.isIntersecting ? 'none' : 'auto'; });
+  }, { threshold: 0.15 });
+  io.observe(target);
+})();
+
 /* ===== Đếm ngược tới giờ workshop ===== */
 // Đổi ngày/giờ sự kiện tại đây (định dạng: năm, tháng-1, ngày, giờ, phút)
 const EVENT_TIME = new Date(2026, 6, 18, 20, 0, 0).getTime(); // 18/07/2026 20:00
 const pad = n => String(n).padStart(2,'0');
+let cdTimer = null;
 function tickCountdown(){
   const diff = EVENT_TIME - Date.now();
   const el = id => document.getElementById(id);
   if(diff <= 0){
     ['cdD','cdH','cdM','cdS'].forEach(i=>{ if(el(i)) el(i).textContent='00'; });
-    const lbl = document.querySelector('.cd-label'); if(lbl) lbl.textContent='🔴 Sự kiện đang diễn ra';
+    const lbl = document.querySelector('.cd-label'); if(lbl) lbl.textContent='⏹ Đợt đăng ký đã kết thúc';
+    if(cdTimer){ clearInterval(cdTimer); cdTimer = null; }   // dừng, không chạy vô hạn
     return;
   }
   const d = Math.floor(diff/86400000);
@@ -644,7 +704,7 @@ function tickCountdown(){
   if(el('cdS')) el('cdS').textContent = pad(s);
 }
 tickCountdown();
-setInterval(tickCountdown, 1000);
+cdTimer = setInterval(tickCountdown, 1000);
 </script>
 </body>
 </html>
