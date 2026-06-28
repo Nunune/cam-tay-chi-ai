@@ -24,7 +24,7 @@ Landing page một trang (single-file) cho workshop **"Cầm tay chỉ AI"** —
 
 - **Thiết kế hiện đại** — tông tím hoàng gia + vàng gold, font *Be Vietnam Pro* (đủ dấu tiếng Việt), responsive cho mobile.
 - **Đồng hồ đếm ngược** tới giờ khai giảng (tự dừng khi hết hạn).
-- **Form đăng ký** → gửi về **Google Sheet** (qua Google Form, không cần backend riêng).
+- **Form đăng ký** → gửi về **Google Sheet** (qua Google Form — không cần tự dựng máy chủ backend).
 - **Mã QR cọc động** — tự sinh QR VietQR đã gắn sẵn nội dung chuyển khoản kèm số điện thoại người đăng ký.
 - **Thanh suất khan hiếm** đồng bộ từ một nguồn cấu hình.
 - **Chống bot** bằng honeypot, validate số điện thoại 10–11 số, chống double-submit.
@@ -55,8 +55,8 @@ const CONFIG = {
   BANK:  { bankCode: "VCB", account: "...", holder: "...", amount: 200000 }, // tài khoản nhận cọc
   SEATS: { total: 99, left: 27 }   // số suất hiển thị
 };
-// Đổi ngày sự kiện:
-const EVENT_TIME = new Date(2026, 6, 18, 20, 0, 0).getTime();
+// Đổi ngày sự kiện (LƯU Ý: tháng trong JavaScript tính từ 0, nên 6 = tháng 7):
+const EVENT_TIME = new Date(2026, 6, 18, 20, 0, 0).getTime(); // 18/07/2026 20:00
 ```
 
 - **Đổi tài khoản nhận cọc:** sửa `BANK.bankCode`, `BANK.account`, `BANK.holder`.
@@ -78,11 +78,10 @@ const EVENT_TIME = new Date(2026, 6, 18, 20, 0, 0).getTime();
 └── README.md       # Tài liệu này
 ```
 
-## 🔒 Ghi chú bảo mật
+## 🔒 Quyền riêng tư & dữ liệu
 
-- Google Sheet luôn để chế độ **Restricted** (chỉ người được mời), không bao giờ "Anyone with the link".
-- Form công khai có honeypot chống bot; suất thật được tính theo **tiền cọc đã về**, không chỉ theo số dòng trong Sheet.
-- Không commit file nội bộ (`Code.gs`, hướng dẫn riêng) lên repo public.
+- Dữ liệu đăng ký được lưu trong Google Sheet **riêng tư** (chế độ Restricted — chỉ người được cấp quyền mới xem được).
+- Thông tin người dùng chỉ dùng cho mục đích liên hệ về workshop.
 
 ## 👤 Mentor
 
